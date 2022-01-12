@@ -14,6 +14,8 @@
   --size-to-line: 94px;
   --size-between: 30px;
   --size-top: 50px;
+  --animation-type: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 1000ms;
 }
 body {
   font-family: Roboto, sans-serif;
@@ -95,6 +97,7 @@ img {
   letter-spacing: 0.02em;
 }
 .site-nav .link {
+  position: relative;
   display: block;
   padding-top: 32px;
   padding-bottom: 32px;
@@ -113,10 +116,28 @@ img {
 .studio {
   color: var(--accent-color);
 }
+.studio::after,
+.portfolio::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
 .portfolio {
   color: var(--accent-color);
 }
-
+.link {
+  transition-property: color;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
+}
 .link:hover,
 .link:focus {
   color: var(--accent-color);
@@ -185,6 +206,11 @@ img {
   border-radius: 4px;
   border: none;
 }
+.hero-button {
+  transition-property: background-color;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
+}
 .hero-button:hover,
 .hero-button:focus {
   background-color: var(--hover-btn-color);
@@ -236,8 +262,6 @@ img {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.close-modal-icon {
-}
 /*--------------------- title--------------------------------- */
 
 .feature-list {
@@ -369,14 +393,19 @@ img {
   margin-left: 10px;
 }
 .employee-social-link {
-  width: 44px;
-  height: 44px;
-  background-color: var(--btn-color);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 44px;
+  height: 44px;
+
+  background-color: var(--btn-color);
   border-radius: 50%;
   color: #afb1b8;
+
+  transition-property: background-color, color;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
 }
 .employee-social-icon {
   fill: currentColor;
@@ -401,15 +430,20 @@ img {
   margin-left: var(--size-between);
 }
 .client-items-link {
-  width: 170px;
-  height: 92px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 170px;
+  height: 92px;
+
   border: 1px solid #afb1b8;
   box-sizing: border-box;
   border-radius: 4px;
   color: #afb1b8;
+
+  transition-property: background-color, color;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
 }
 .client-items-icon {
   fill: currentColor;
@@ -444,6 +478,10 @@ img {
   background-color: var(--second-btn-color);
   border-radius: 4px;
   border: none;
+
+  transition-property: background-color, color;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
 }
 .all,
 .button:hover,
@@ -505,9 +543,51 @@ img {
 
   color: #757575;
 }
-.exemples-card:hover {
+.card {
+  transition-property: box-shadow;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
+}
+.card:hover,
+.card:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+.card-thumb {
+  position: relative;
+
+  overflow: hidden;
+}
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  opacity: 1;
+  transform: translateY(100%);
+  transition-property: transform;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
+}
+.card:hover .card-overlay {
+  transform: translateY(0);
+}
+.card-backdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--hero-color);
+  opacity: 1;
 }
 
 /*---------------------------------------- footer----------------------------  */
@@ -559,14 +639,19 @@ img {
   margin-left: 10px;
 }
 .footer-social-link {
-  width: 44px;
-  height: 44px;
-  background-color: rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 44px;
+  height: 44px;
+
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   color: var(--btn-color);
+
+  transition-property: background-color, color;
+  transition-duration: var(--animation-duration);
+  transition-timing-function: var(--animation-type);
 }
 .footer-social-icon {
   fill: currentColor;
